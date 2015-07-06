@@ -1,0 +1,31 @@
+//- index.jade
+doctype html
+
+html(lang='en')
+
+	include ./head.jade
+
+	body
+		table(class='footable table')
+			thead: tr
+				th(data-toggle='true') Name
+				th Position
+				th(data-hide='phone') Batting Average
+				th(data-hide='phone') Home State
+				th(data-hide='phone') Description
+			tbody
+				each player in players
+					tr
+						each val, key in player
+							td(style=(key == 'average' ? 'text-align: center;' : '')) #{val}
+
+		script.
+			$( function(){
+				$('.footable').footable({
+					addRowToggle: true,
+					breakpoints: {
+						phone: 880,
+						tablet: 1024
+					}
+				});
+			});
